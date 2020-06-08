@@ -49,7 +49,7 @@ if __name__ == "__main__":
   print "Cam poses shape",cam_poses.shape
   vol_bnds = np.zeros((3,2))
 	
-  base_dir="/home/ashfaquekp/rgbd_dataset_freiburg2_desk/"
+  base_dir="/home/ashfaquekp/rgbd_dataset_freiburg1_desk/"
   file = open("associate.txt")
   data = file.read()
   lines = data.split("\n") 
