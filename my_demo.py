@@ -3,6 +3,7 @@ import time
 
 import numpy as np
 import cv2
+import fusion
 
 _EPS = np.finfo(float).eps * 4.0
 def transform44(l):
@@ -54,35 +55,25 @@ if __name__ == "__main__":
   data = file.read()
   lines = data.split("\n") 
   
+  index=0
   for line in lines:     #This is used to loop all images
     contents=line.split(" ")
     rgb_file=base_dir+contents[1]
     depth_file=base_dir+contents[3]
-   
-    print rgb_file
-    print depth_file
 
     depth_im = cv2.imread(depth_file,-1)
     depth_im=depth_im.astype("float")
     depth_im /= 5000. 
-    print "Depth shape",depth_im.shape
-    print "Depth max",np.max(depth_im)
-    print "Depth min",np.min(depth_im)
-    cv2.imshow("Depth",depth_im)
+    
 
-    cv2.waitKey()
-    cv2.destroyAllWindows()
+    cam_pose=transform44(cam_poses[index,:])
+    index+=1
+    view_frust_pts = fusion.get_view_frustum(depth_im, cam_intr, cam_pose)
+    vol_bnds[:,0] = np.minimum(vol_bnds[:,0], np.amin(view_frust_pts, axis=1))
+    vol_bnds[:,1] = np.maximum(vol_bnds[:,1], np.amax(view_frust_pts, axis=1))
+  print "Volume Bounds:",vol_bnds
+  print "Index:",index
+
     
-    rgb_im = cv2.imread(rgb_file)
-    print "rgb max",np.max(rgb_im)
-    print "rgb min",np.min(rgb_im)
-    cv2.imshow("RGB",rgb_im)
-    cv2.waitKey()
-    cv2.destroyAllWindows()
-    
-    cam_pose=transform44(cam_poses[0,:])
-    print cam_pose
-     # depth is saved in 16-bit PNG in millimeters
-    break
 
   
