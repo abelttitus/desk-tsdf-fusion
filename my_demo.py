@@ -48,7 +48,7 @@ if __name__ == "__main__":
   print "Cam poses shape",cam_poses.shape
   vol_bnds = np.zeros((3,2))
 	
-  base_dir="/home/ashfaquekp/"
+  base_dir="/home/ashfaquekp/rgbd_dataset_freiburg2_desk/"
   file = open("associate.txt")
   data = file.read()
   lines = data.split("\n") 
@@ -59,8 +59,14 @@ if __name__ == "__main__":
     depth_file=contents[3]
     depth_im = cv2.imread(base_dir+depth_file,-1).astype(float)
     cv2.imshow(depth_im)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+    
     rgb_im = cv2.imread(base_dir+rgb_file,-1).astype(float)
     cv2.imshow(rgb_im)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+    
     cam_pose=transform44(cam_poses[0,:])
     print cam_pose
     depth_im /= 5000.  # depth is saved in 16-bit PNG in millimeters
