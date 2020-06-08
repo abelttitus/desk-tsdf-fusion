@@ -105,7 +105,7 @@ if __name__ == "__main__":
     depth_im = cv2.imread(depth_file,-1).astype(float)
     depth_im /= 5000.
     #depth_im[depth_im == 65.535] = 0
-    cam_pose=transform44(cam_poses[index,:])
+    cam_pose=transform44(cam_poses[i,:])
     
 
     # Integrate observation into voxel volume (assume color aligned with depth)
