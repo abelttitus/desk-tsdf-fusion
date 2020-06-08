@@ -63,6 +63,7 @@ if __name__ == "__main__":
     print depth_file
 
     depth_im = cv2.imread(depth_file,-1)
+    depth_im=depth_im.astype("float")
     depth_im /= 5000. 
     print "Depth shape",depth_im.shape
     print "Depth max",np.max(depth_im)
