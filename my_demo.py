@@ -64,12 +64,17 @@ if __name__ == "__main__":
 
     depth_im = cv2.imread(depth_file,-1)
     #depth_im /= 5000. 
+    print "Depth shape",depth_im.shape
+    print "Depth max",np.max(depth_im)
+    print "Depth min",np.min(depth_im)
     cv2.imshow("Depth",depth_im)
 
     cv2.waitKey()
     cv2.destroyAllWindows()
     
     rgb_im = cv2.imread(rgb_file)
+    print "rgb max",np.max(rgb_im)
+    print "rgb min",np.min(rgb_im)
     cv2.imshow("RGB",rgb_im)
     cv2.waitKey()
     cv2.destroyAllWindows()
