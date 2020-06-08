@@ -62,14 +62,14 @@ if __name__ == "__main__":
     print rgb_file
     print depth_file
 
-    depth_im = cv2.imread(depth_file,-1).astype(float)
-    depth_im /= 5000. 
+    depth_im = cv2.imread(depth_file,-1)
+    #depth_im /= 5000. 
     cv2.imshow("Depth",depth_im)
 
     cv2.waitKey()
     cv2.destroyAllWindows()
     
-    rgb_im = cv2.imread(rgb_file).astype(float)
+    rgb_im = cv2.imread(rgb_file)
     cv2.imshow("RGB",rgb_im)
     cv2.waitKey()
     cv2.destroyAllWindows()
