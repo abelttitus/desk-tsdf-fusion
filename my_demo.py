@@ -58,8 +58,11 @@ if __name__ == "__main__":
   index=0
   for line in lines:     #This is used to loop all images
     contents=line.split(" ")
-    rgb_file=base_dir+contents[1]
-    depth_file=base_dir+contents[3]
+    try:
+      rgb_file=base_dir+contents[1]
+      depth_file=base_dir+contents[3]
+    except:
+      continue
 
     depth_im = cv2.imread(depth_file,-1)
     depth_im=depth_im.astype("float")
