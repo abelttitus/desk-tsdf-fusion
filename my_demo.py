@@ -56,14 +56,18 @@ if __name__ == "__main__":
   
   for line in lines:     #This is used to loop all images
     contents=line.split(" ")
-    rgb_file=contents[1]
-    depth_file=contents[3]
-    depth_im = cv2.imread(base_dir+depth_file,-1).astype(float)
+    rgb_file=base_dir+contents[1]
+    depth_file=base_dir+contents[3]
+   
+    print rgb_file
+    print depth_file
+
+    depth_im = cv2.imread(depth_file,-1).astype(float)
     cv2.imshow(depth_im)
     cv2.waitKey()
     cv2.destroyAllWindows()
     
-    rgb_im = cv2.imread(base_dir+rgb_file,-1).astype(float)
+    rgb_im = cv2.imread(rgb_file,-1).astype(float)
     cv2.imshow(rgb_im)
     cv2.waitKey()
     cv2.destroyAllWindows()
