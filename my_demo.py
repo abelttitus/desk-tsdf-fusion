@@ -54,7 +54,7 @@ if __name__ == "__main__":
   lines = data.split("\n") 
   
   for line in lines:     #This is used to loop all images
-    line=line.split(" ")
+    contents=line.split(" ")
     rgb_file=contents[1]
     depth_file=contents[3]
     depth_im = cv2.imread(base_dir+depth_file,-1).astype(float)
