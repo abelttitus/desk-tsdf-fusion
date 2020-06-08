@@ -107,7 +107,7 @@ if __name__ == "__main__":
     #depth_im[depth_im == 65.535] = 0
     cam_pose=transform44(cam_poses[i,:])
     
-
+    i+=1
     # Integrate observation into voxel volume (assume color aligned with depth)
     tsdf_vol.integrate(color_image, depth_im, cam_intr, cam_pose, obs_weight=1.)
 
