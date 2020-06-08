@@ -63,18 +63,20 @@ if __name__ == "__main__":
     print depth_file
 
     depth_im = cv2.imread(depth_file,-1).astype(float)
+    depth_im /= 5000. 
     cv2.imshow("Depth",depth_im)
+
     cv2.waitKey()
     cv2.destroyAllWindows()
     
-    rgb_im = cv2.imread(rgb_file,-1).astype(float)
+    rgb_im = cv2.imread(rgb_file).astype(float)
     cv2.imshow("RGB",rgb_im)
     cv2.waitKey()
     cv2.destroyAllWindows()
     
     cam_pose=transform44(cam_poses[0,:])
     print cam_pose
-    depth_im /= 5000.  # depth is saved in 16-bit PNG in millimeters
+     # depth is saved in 16-bit PNG in millimeters
     break
 
   
